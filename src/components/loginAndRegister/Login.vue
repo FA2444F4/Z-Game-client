@@ -8,7 +8,7 @@
             <h2>Z-Game</h2>
           </el-col>
           <el-col :span="6" :offset="12">
-            <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+            <el-menu mode="horizontal" >
               <el-submenu index="1">
                 <template slot="title">注册</template>
                 <el-menu-item index="1-1">
@@ -62,8 +62,11 @@
           password: ''
         }
       }
+    },created() {
+      this.toHome();
     },
     methods:{
+      //登录
       async login(){
         const {data: res}=await this.$axios.get('/apis/login/'+this.form.username+'/'+this.form.password)
         if(res.code===1){//登录成功
@@ -76,6 +79,19 @@
           }
         }else {
           this.$message.error("用户名或密码错误")
+        }
+      },
+      //检查是否有用户session,有的话跳转到首页
+      async toHome(){
+        const {data: res}=await this.$axios.get('/apis/login/toHome')
+        if(res.code===1){
+          if(res.data===0){
+            this.$router.push('/administratorHome')
+          }else if(res.data===1){
+            this.$router.push('/playerHome')
+          }else if(res.data===2){
+            this.$router.push('/developerHome')
+          }
         }
       }
     }

@@ -122,9 +122,11 @@
             }
           });
           //看后端code
-          if(res.code===0){
+          if(res.code===0){//如果注册失败
             this.form.username=''
             this.$message.error(res.msg)
+          }else {//如果注册成功
+
           }
 
 
