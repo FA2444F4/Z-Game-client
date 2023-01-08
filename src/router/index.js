@@ -9,6 +9,7 @@ import AdministratorHome from "../components/home/AdministratorHome";
 import PlayerHome from "../components/home/PlayerHome";
 import DeveloperHome from "../components/home/DeveloperHome";
 import playerRegister from "../components/loginAndRegister/playerRegister";
+import developerRegister from "../components/loginAndRegister/developerRegister";
 
 //安装路由插件
 Vue.use(VueRouter)
@@ -19,13 +20,14 @@ const router = new VueRouter({
   routes: [
     {path: '/', redirect: '/login'},//重定向
     {path: '/login', component: Login},
-    {path:'/administratorHome',component: AdministratorHome},
-    {path:'/playerHome',component: PlayerHome},
-    {path:'/developerHome',component: DeveloperHome},
-    {path:'/playerRegister',component: playerRegister},
+    {path: '/administratorHome', component: AdministratorHome},
+    {path: '/playerHome', component: PlayerHome},
+    {path: '/developerHome', component: DeveloperHome},
+    {path: '/playerRegister', component: playerRegister},
+    {path: '/developerRegister',component: developerRegister},
 
 
-    {path: '/bookList',component: BookList},
+    {path: '/bookList', component: BookList},
     {path: '/book/:id', component: BookDetail, props: true},
   ],
 })
