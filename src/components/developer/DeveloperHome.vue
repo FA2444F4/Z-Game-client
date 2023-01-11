@@ -8,6 +8,18 @@
 <script>
   export default {
     name: "DeveloperHome",
+    data(){
+      return{
+        developerInfo:{
+          //user
+          id:'',
+          username:'',
+          password: '',
+          type:1,
+          create_time:''
+        }
+      }
+    },
     created() {
       this.developerHomeLoad();
     },
@@ -22,9 +34,7 @@
           //表示欢迎
           this.$message.success(res.msg)
           //更新数据
-          /**
-           * todo
-           */
+
         }
 
 

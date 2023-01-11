@@ -64,7 +64,7 @@
       <!--添加tag的表单-->
       <el-form :model="addForm">
         <!--name-->
-        <el-form-item label="标签名">
+        <el-form-item label="标签名" required>
           <el-input v-model="addForm.name"></el-input>
         </el-form-item>
         <!--description-->
@@ -95,7 +95,7 @@
       @close="updateDialogClosed">
       <el-form :model="updateForm">
         <!--name-->
-        <el-form-item label="标签名">
+        <el-form-item label="标签名" required>
           <el-input v-model="updateForm.name"></el-input>
         </el-form-item>
         <!--description-->

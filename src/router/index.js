@@ -7,10 +7,12 @@ import BookDetail from "../components/BookDetail.vue";
 import Login from "../components/loginAndRegister/Login.vue";
 import AdministratorHome from "../components/administrator/AdministratorHome";
 import PlayerHome from "../components/home/PlayerHome";
-import DeveloperHome from "../components/home/DeveloperHome";
+import DeveloperHome from "../components/developer/DeveloperHome";
 import playerRegister from "../components/loginAndRegister/playerRegister";
 import developerRegister from "../components/loginAndRegister/developerRegister";
 import TagManage from "../components/administrator/TagManage";
+import GameManage from "../components/developer/game/GameManage";
+import AdministratorInfo from "../components/administrator/AdministratorInfo";
 
 
 //安装路由插件
@@ -24,19 +26,26 @@ const router = new VueRouter({
   routes: [
     {path: '/', redirect: '/login'},//重定向
     {path: '/login', component: Login},
-    {
+    {//管理员首页
       path: '/administratorHome',
       name: 'administratorHome',
       component: AdministratorHome,
       children: [
         {path: '/tagManage', component: TagManage},
+        {path: '/administratorInfo',component: AdministratorInfo},
       ]
     },
     {path: '/playerHome', component: PlayerHome},
-    {path: '/developerHome', component: DeveloperHome},
+    {//开发商首页
+      path: '/developerHome',
+      name: 'developerHome',
+      component: DeveloperHome,
+      children: [
+        {path: '/gameManage', component: GameManage}
+      ]
+    },
     {path: '/playerRegister', component: playerRegister},
     {path: '/developerRegister', component: developerRegister},
-
 
 
     {path: '/bookList', component: BookList},

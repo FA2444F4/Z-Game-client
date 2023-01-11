@@ -15,16 +15,16 @@
         <el-row>
           <el-col :span="12" :offset="6">
             <el-form :model="form" ref="developerRegisterForm">
-              <el-form-item label="用户名">
+              <el-form-item label="用户名" required>
                 <el-input v-model="form.username" placeholder="每个用户用户名不允许重复"></el-input>
               </el-form-item>
-              <el-form-item label="密码">
+              <el-form-item label="密码" required>
                 <el-input type="password" v-model="form.password" show-password></el-input>
               </el-form-item>
-              <el-form-item label="开发商名">
+              <el-form-item label="开发商名" required>
                 <el-input v-model="form.name"></el-input>
               </el-form-item>
-              <el-form-item label="手机号">
+              <el-form-item label="手机号" required>
                 <el-input v-model="form.phone"></el-input>
               </el-form-item>
               <el-form-item label="描述">

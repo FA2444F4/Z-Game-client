@@ -30,7 +30,9 @@
                     <el-button @click="destorySession">退出登录</el-button>
                   </el-menu-item>
                   <el-menu-item index="3-2" style="margin-bottom: 10px">
-                    <el-button>待定</el-button>
+                    <el-button>
+                      <router-link to="/administratorInfo">管理员信息</router-link>
+                    </el-button>
                   </el-menu-item>
                 </el-submenu>
               </el-menu>

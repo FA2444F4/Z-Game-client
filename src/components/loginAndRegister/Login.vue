@@ -28,10 +28,10 @@
         <el-row>
           <el-col :span="12" :offset="6">
             <el-form :model="form" ref="loginForm">
-              <el-form-item label="用户名">
+              <el-form-item label="用户名" required>
                 <el-input v-model="form.username"></el-input>
               </el-form-item>
-              <el-form-item label="密码">
+              <el-form-item label="密码" required>
                 <el-input type="password" v-model="form.password"></el-input>
               </el-form-item>
               <el-button type="primary" @click="login">登录</el-button>
