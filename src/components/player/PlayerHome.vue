@@ -14,7 +14,7 @@
                 <el-submenu index="2">
                   <template slot="title">游戏管理</template>
                   <el-menu-item index="2-1">
-                    <router-link to="/tagManage">标签管理</router-link>
+                    <router-link to="">待定</router-link>
                   </el-menu-item>
                   <el-menu-item index="2-2">
                     <router-link to="#">2-2</router-link>
@@ -24,17 +24,15 @@
                 <el-submenu index="3">
                   <template slot="title">
                     <i class="el-icon-user"></i>
-                    {{this.administratorInfo.nick_name}}
+                    {{this.playerInfo.nick_name}}
                   </template>
                   <el-menu-item index="3-1" style="margin-bottom: 10px">
                     <el-button @click="destorySession">退出登录</el-button>
                   </el-menu-item>
                   <el-menu-item index="3-2" style="margin-bottom: 10px">
-
-                    <router-link to="/administratorInfo">
-                      <el-button>管理员信息</el-button>
-                    </router-link>
-
+                      <router-link to="/playerInfo">
+                        <el-button>玩家信息</el-button>
+                      </router-link>
                   </el-menu-item>
                 </el-submenu>
               </el-menu>
@@ -57,45 +55,46 @@
 
 <script>
   export default {
-    name: "AdministratorHome",
-    created() {
-      this.administratorHomeLoad();
-    },
+    name: "PlayerHome",
     data() {
       return {
-        administratorInfo: {
+        playerInfo:{
           id: '',
-          username: '',
-          password: '',
-          type: 0,
-          create_time: null,
+          username: '',//>>>
+          password: '',//>>>
+          type: 1,
+          create_time: 0,
 
-          nick_name: '管理员昵称(预设测试)'
+          status: 0,
+          deposit: 0,
+          nick_name: '',//>>>
+          name:'',//>>>
+          sex:0,//>>>
+          phone:0,//>>>
         },
         activeIndex: '1',//顶部栏选的哪个
-
       }
+    },
+    created() {
+      this.playerHomeLoad();
     },
     methods: {
       //加载主页
-      async administratorHomeLoad() {
-        const {data: res} = await this.$axios.get('/apis/administrator/homeLoad')
+      async playerHomeLoad() {
+        const {data: res} = await this.$axios.get('/apis/player/homeLoad')
         if (res.code === 0) {//失败
           this.$message.error(res.msg)
           this.$router.push('/')
         } else {//成功
           //表示欢迎
-          /*//测试 判断是否能不欢迎
-          console.log(this.$route.params.dontWelcome)
-          if(this.$route.params.dontWelcome!==undefined&&this.$route.params.dontWelcome!==null)*/
           this.$message.success(res.msg)
           //更新数据
-          this.administratorInfo.nick_name = res.data.administrator.nick_name;
+          this.playerInfo.nick_name=res.data.player.nick_name;
+
         }
 
 
-      }
-      ,
+      },
       //注销
       async destorySession() {
         const {data: res} = await this.$axios.get('/apis/login/destorySession')

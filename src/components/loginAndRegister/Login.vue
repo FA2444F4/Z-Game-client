@@ -12,10 +12,10 @@
               <el-submenu index="1">
                 <template slot="title">注册</template>
                 <el-menu-item index="1-1">
-                  <router-link to="/playerRegister">玩家注册</router-link>
+                  <router-link to="/playerRegister"><el-button>玩家注册</el-button></router-link>
                 </el-menu-item>
                 <el-menu-item index="1-2">
-                  <router-link to="/developerRegister">开发商注册</router-link>
+                  <router-link to="/developerRegister"><el-button>开发商注册</el-button></router-link>
                 </el-menu-item>
               </el-submenu>
             </el-menu>

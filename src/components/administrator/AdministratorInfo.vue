@@ -15,6 +15,9 @@
         <el-row>
           <el-col :span="12" :offset="6">
             <el-form :model="administratorInfo" ref="administratorInfoForm">
+              <el-form-item label="id" >
+                <el-input v-model="administratorInfo.id" disabled></el-input>
+              </el-form-item>
               <el-form-item label="用户名" required prop="username">
                 <el-input v-model="administratorInfo.username"></el-input>
               </el-form-item>
@@ -51,7 +54,7 @@
     data() {
       return {
         administratorInfo: {
-          id: '',
+          id: 0,
           username: '',
           password: '',
           type: 0,

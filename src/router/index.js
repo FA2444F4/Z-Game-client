@@ -6,13 +6,14 @@ import BookList from "../components/BookList.vue";
 import BookDetail from "../components/BookDetail.vue";
 import Login from "../components/loginAndRegister/Login.vue";
 import AdministratorHome from "../components/administrator/AdministratorHome";
-import PlayerHome from "../components/home/PlayerHome";
+import PlayerHome from "../components/player/PlayerHome";
 import DeveloperHome from "../components/developer/DeveloperHome";
-import playerRegister from "../components/loginAndRegister/playerRegister";
-import developerRegister from "../components/loginAndRegister/developerRegister";
+import playerRegister from "../components/loginAndRegister/PlayerRegister";
+import developerRegister from "../components/loginAndRegister/DeveloperRegister";
 import TagManage from "../components/administrator/TagManage";
 import GameManage from "../components/developer/game/GameManage";
 import AdministratorInfo from "../components/administrator/AdministratorInfo";
+import PlayerInfo from "../components/player/PlayerInfo";
 
 
 //安装路由插件
@@ -35,13 +36,20 @@ const router = new VueRouter({
         {path: '/administratorInfo',component: AdministratorInfo},
       ]
     },
-    {path: '/playerHome', component: PlayerHome},
+    {//玩家首页
+      path: '/playerHome',
+      name: 'playerHome',
+      component: PlayerHome,
+      children: [
+        {path: '/playerInfo',component: PlayerInfo},
+      ]
+    },
     {//开发商首页
       path: '/developerHome',
       name: 'developerHome',
       component: DeveloperHome,
       children: [
-        {path: '/gameManage', component: GameManage}
+        {path: '/gameManage', component: GameManage},
       ]
     },
     {path: '/playerRegister', component: playerRegister},
