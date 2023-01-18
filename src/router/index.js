@@ -14,6 +14,7 @@ import TagManage from "../components/administrator/TagManage";
 import GameManage from "../components/developer/game/GameManage";
 import AdministratorInfo from "../components/administrator/AdministratorInfo";
 import PlayerInfo from "../components/player/PlayerInfo";
+import DeveloperInfo from "../components/developer/DeveloperInfo";
 
 
 //安装路由插件
@@ -33,7 +34,7 @@ const router = new VueRouter({
       component: AdministratorHome,
       children: [
         {path: '/tagManage', component: TagManage},
-        {path: '/administratorInfo',component: AdministratorInfo},
+        {path: '/administratorInfo', component: AdministratorInfo},
       ]
     },
     {//玩家首页
@@ -41,7 +42,7 @@ const router = new VueRouter({
       name: 'playerHome',
       component: PlayerHome,
       children: [
-        {path: '/playerInfo',component: PlayerInfo},
+        {path: '/playerInfo', component: PlayerInfo},
       ]
     },
     {//开发商首页
@@ -50,6 +51,7 @@ const router = new VueRouter({
       component: DeveloperHome,
       children: [
         {path: '/gameManage', component: GameManage},
+        {path: '/developerInfo', component: DeveloperInfo}
       ]
     },
     {path: '/playerRegister', component: playerRegister},

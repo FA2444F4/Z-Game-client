@@ -70,7 +70,7 @@
           nick_name: '',//>>>
           name:'',//>>>
           sex:0,//>>>
-          phone:0,//>>>
+          phone:'',//>>>
         },
         activeIndex: '1',//顶部栏选的哪个
       }
