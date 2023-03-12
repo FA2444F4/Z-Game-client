@@ -42,7 +42,15 @@
               <el-form-item label="手机号" required>
                 <el-input v-model="form.phone"></el-input>
               </el-form-item>
-              <el-button type="primary" @click="PlayerRegister">注册</el-button>
+              <div class="block" disabled="disabled">
+                <span class="demonstration">账户创建日期</span>
+                <el-date-picker
+                  v-model="form.create_time"
+                  type="timestamp"
+                  placeholder="选择日期">
+                </el-date-picker>
+              </div>
+              <el-button type="primary" @click="playerRegister">注册</el-button>
             </el-form>
           </el-col>
         </el-row>
@@ -63,6 +71,7 @@
           username: '',
           password: '',
           nick_name: '',
+          create_time:0,
           name: '',
           sex: 1,
           phone: ''
@@ -109,6 +118,7 @@
             user: {
               username: this.form.username,
               password: this.form.password,
+              create_time: this.form.create_time/1000,
               type: 1
 
             },
@@ -133,6 +143,10 @@
 
         }
       }
+    },
+    created() {
+      this.form.create_time=(new Date()).valueOf();
+      // console.log(this.form.create_time)
     }
   }
 </script>

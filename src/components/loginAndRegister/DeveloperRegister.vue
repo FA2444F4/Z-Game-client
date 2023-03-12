@@ -30,7 +30,15 @@
               <el-form-item label="描述">
                 <el-input type="textarea" v-model="form.description"></el-input>
               </el-form-item>
-              <el-button type="primary" @click="DeveloperRegister">注册</el-button>
+              <div class="block" disabled="disabled">
+                <span class="demonstration">账户创建日期</span>
+                <el-date-picker
+                  v-model="form.create_time"
+                  type="timestamp"
+                  placeholder="选择日期">
+                </el-date-picker>
+              </div>
+              <el-button type="primary" @click="developerRegister">注册</el-button>
             </el-form>
           </el-col>
         </el-row>
@@ -52,7 +60,8 @@
           password: '',
           name: '',
           phone: '',
-          description: ''
+          description: '',
+          create_time:0,
         }
       }
     },
@@ -86,7 +95,8 @@
             user: {
               username: this.form.username,
               password: this.form.password,
-              type: 2
+              type: 2,
+              create_time:this.form.create_time/1000,
 
             },
             developer: {
@@ -106,6 +116,9 @@
           }
         }
       }
+    },
+    created() {
+      this.form.create_time=(new Date()).valueOf();
     }
   }
 </script>

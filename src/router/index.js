@@ -11,11 +11,12 @@ import DeveloperHome from "../components/developer/DeveloperHome";
 import playerRegister from "../components/loginAndRegister/PlayerRegister";
 import developerRegister from "../components/loginAndRegister/DeveloperRegister";
 import TagManage from "../components/administrator/TagManage";
-import GameManage from "../components/developer/game/GameManage";
 import AdministratorInfo from "../components/administrator/AdministratorInfo";
 import PlayerInfo from "../components/player/PlayerInfo";
 import DeveloperInfo from "../components/developer/DeveloperInfo";
-
+import GameAdd from "../components/developer/game/GameAdd";
+import GameList from "../components/developer/game/GameList";
+import GameUpdate from "../components/developer/game/GameUpdate";
 
 //安装路由插件
 Vue.use(VueRouter)
@@ -50,8 +51,9 @@ const router = new VueRouter({
       name: 'developerHome',
       component: DeveloperHome,
       children: [
-        {path: '/gameManage', component: GameManage},
-        {path: '/developerInfo', component: DeveloperInfo}
+        {path: '/gameList', component: GameList},
+        {path: '/developerInfo', component: DeveloperInfo},
+        {path: '/gameAdd',component: GameAdd},
       ]
     },
     {path: '/playerRegister', component: playerRegister},
