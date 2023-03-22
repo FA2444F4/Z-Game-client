@@ -109,7 +109,7 @@
 
 <script>
   export default {
-    name: "GameAdd",
+    name: "DeveloperGameAdd",
     data() {
       return {
         game: {
@@ -183,11 +183,11 @@
           this.$message.error("价格还没填写")
           return ;
         }
-        if(this.game.description===''){
+        /*if(this.game.description===''){
           this.$message.error("描述还没填写")
           return ;
-        }
-        if(this.game.header_image===''){
+        }*/
+        /*if(this.game.header_image===''){
           this.$message.error("游戏海报还没上传")
           return ;
         }
@@ -202,7 +202,7 @@
         if(this.game.screenshot3===''){
           this.$message.error("游戏截图3还没上传")
           return ;
-        }
+        }*/
         if(this.selectTag.length===0){
           this.$message.error("至少要选一个标签")
           return ;
@@ -226,7 +226,7 @@
         //表示添加成功
         this.$message.success("游戏发布成功")
         //跳转到游戏列表
-        this.$router.push('/gameList')
+        // this.$router.push('/gameList')
 
 
       },

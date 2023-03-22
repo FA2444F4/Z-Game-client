@@ -14,10 +14,10 @@
                 <el-submenu index="2">
                   <template slot="title" style="color: #dc143c">游戏管理</template>
                   <el-menu-item index="2-1">
-                    <router-link to="/gameList">游戏列表</router-link>
+                    <router-link to="/developerGameList">游戏列表</router-link>
                   </el-menu-item>
                   <el-menu-item index="2-2">
-                    <router-link to="/gameAdd">发布游戏</router-link>
+                    <router-link to="/developerGameAdd">发布游戏</router-link>
                   </el-menu-item>
                 </el-submenu>
 

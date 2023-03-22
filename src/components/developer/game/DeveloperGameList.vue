@@ -26,11 +26,11 @@
             <template v-slot="{row}">
               <div>
                 <!--修改-->
-                <el-button @click.prevent="makeUpdateDialogVisible(row.id,row.name,row.description)">
-                  详情或修改
+                <el-button @click.prevent="goGameInfoOrUpdatePage(row.id)">
+                  详情
                 </el-button>
                 <!--删除-->
-                <el-button @click.prevent="makeDeleteDialogVisible(row.id)">
+                <el-button @click.prevent="deleteGame(row.id)">
                   删除
                 </el-button>
               </div>
@@ -44,9 +44,10 @@
 
 <script>
   export default {
-    name: "GameList",
+    name: "DeveloperGameList",
     created() {
       this.getAllGame();
+      console.log("111")
     },
     data(){
       return{
@@ -76,18 +77,18 @@
         this.gameList = res.data;
       },
       //去游戏详情页
-      goGameInfoOrUpdatePage(){
+      goGameInfoOrUpdatePage(id){
         this.$router.push({
-          name: 'GameUpdate',
+          name:"DeveloperGameUpdate",
+          // path: '/gameUpdate',
           params:{
-            //todo
-
-          }
+            id:id,
+          },
         })
       },
       //删除游戏
-      async deleteGame(){
-
+      async deleteGame(id){
+        const {data: res} = await this.$axios.delete('/apis/game/deleteGame/'+id)
       },
     }
   }

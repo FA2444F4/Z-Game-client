@@ -2,8 +2,6 @@ import Vue from 'vue'
 import VueRouter from "vue-router";
 // @代表src目录
 // import BookList from "@/components/BookList";
-import BookList from "../components/BookList.vue";
-import BookDetail from "../components/BookDetail.vue";
 import Login from "../components/loginAndRegister/Login.vue";
 import AdministratorHome from "../components/administrator/AdministratorHome";
 import PlayerHome from "../components/player/PlayerHome";
@@ -14,9 +12,11 @@ import TagManage from "../components/administrator/TagManage";
 import AdministratorInfo from "../components/administrator/AdministratorInfo";
 import PlayerInfo from "../components/player/PlayerInfo";
 import DeveloperInfo from "../components/developer/DeveloperInfo";
-import GameAdd from "../components/developer/game/GameAdd";
-import GameList from "../components/developer/game/GameList";
-import GameUpdate from "../components/developer/game/GameUpdate";
+import DeveloperGameAdd from "../components/developer/game/DeveloperGameAdd.vue";
+import DeveloperGameList from "../components/developer/game/DeveloperGameList.vue";
+import DeveloperGameUpdate from "../components/developer/game/DeveloperGameUpdate.vue";
+import PlayerGameList from "../components/player/game/PlayerGameList.vue";
+import PlayerGameRecommend from "../components/player/game/PlayerGameRecommend.vue";
 
 //安装路由插件
 Vue.use(VueRouter)
@@ -42,26 +42,30 @@ const router = new VueRouter({
       path: '/playerHome',
       name: 'playerHome',
       component: PlayerHome,
+      redirect:'/playerGameRecommend',
       children: [
         {path: '/playerInfo', component: PlayerInfo},
+        {path:'/playerGameList',component: PlayerGameList},
+        {path:'/playerGameRecommend',component: PlayerGameRecommend},
       ]
     },
     {//开发商首页
       path: '/developerHome',
       name: 'developerHome',
       component: DeveloperHome,
+      redirect:'/developerGameList',
       children: [
-        {path: '/gameList', component: GameList},
         {path: '/developerInfo', component: DeveloperInfo},
-        {path: '/gameAdd',component: GameAdd},
+        {path: '/developerGameList', component: DeveloperGameList},
+        {path: '/developerGameAdd',component: DeveloperGameAdd},
+        {path: '/developerGameUpdate',component: DeveloperGameUpdate,name:'DeveloperGameUpdate'},
       ]
     },
     {path: '/playerRegister', component: playerRegister},
     {path: '/developerRegister', component: developerRegister},
 
 
-    {path: '/bookList', component: BookList},
-    {path: '/book/:id', component: BookDetail, props: true},
+
   ],
 })
 
