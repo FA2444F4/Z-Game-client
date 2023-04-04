@@ -17,6 +17,7 @@ import DeveloperGameList from "../components/developer/game/DeveloperGameList.vu
 import DeveloperGameUpdate from "../components/developer/game/DeveloperGameUpdate.vue";
 import PlayerGameList from "../components/player/game/PlayerGameList.vue";
 import PlayerGameRecommend from "../components/player/game/PlayerGameRecommend.vue";
+import PlayerGameInfo from "../components/player/game/PlayerGameInfo.vue";
 
 //安装路由插件
 Vue.use(VueRouter)
@@ -47,6 +48,7 @@ const router = new VueRouter({
         {path: '/playerInfo', component: PlayerInfo},
         {path:'/playerGameList',component: PlayerGameList},
         {path:'/playerGameRecommend',component: PlayerGameRecommend},
+        {path:'/playerGameInfo',component: PlayerGameInfo,name:'PlayerGameInfo'},
       ]
     },
     {//开发商首页

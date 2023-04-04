@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<input type="file" name="file" id="fileUpload" style="color: crimson">
+<p id="tagP">111111</p>
+<script>
+  let tagP=document.getElementById("tagP");
+  alert("txt的内容是:"+tagP.innerText)
+
+function aaa(){
+  var popUpload = document.getElementById("fileUpload");
+  var img_temp = document.getElementById("img_temp");
+  console.log("src:"+img_temp.id)
+  popUpload.onchange = function () {
+    let log="";
+    const file = document.getElementById('fileUpload');　　// 获取 input(只是演示可以使用外面的 popImg)
+    const fileObj = file.files[0];　　// 获取选中的文件信息
+    // console.log(fileObj)
+    log+=fileObj.name;
+    log+=" >>>";
+    let reader =new FileReader();
+    reader.readAsText(fileObj);
+
+    reader.onload=function (){
+      console.log("reader.result:"+reader.result)
+      log+=reader.result;
+      console.log(log)
+      
+
+    };
+  }
+}
+
+
+console.log(aaa())
+
+
+
+</script>
+</body>
+</html>
