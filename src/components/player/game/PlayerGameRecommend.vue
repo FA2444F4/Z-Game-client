@@ -116,10 +116,15 @@
         </el-col>
       </el-row>
       <span slot="footer" class="dialog-footer">
-        <el-button>换一批</el-button>
+        <el-button @click="refreshWaitingRatingList()">换一批</el-button>
         <el-button @click="submitRating()">提交评论</el-button>
      </span>
     </el-dialog>
+    <div v-if="!getDialogVisible()">
+      已经评价够了游戏
+    </div>
+
+    <!--正式推荐游戏-->
   </div>
 </template>
 
@@ -176,10 +181,18 @@ export default {
     closeDialog() {//关闭对话框
       this.$router.push("/PlayerGameList")
     },
-    refreshWaitingRatingList(){//刷新待评论列表
+    async refreshWaitingRatingList(){//刷新待评论列表
       //先提交评论
-      this.submitRating();
+      let ratingList=[];
+      for (let i = 0; i < this.waitingRatingGameList.length; i++) {
+        ratingList.push({"id":this.waitingRatingGameList[i].game.id,"rating":this.waitingRatingGameList[i].rating});
+      }
+      console.log(ratingList)
+      //让后端带着数组去改
+      const {data :res}=await this.$axios.put('apis/player/playerSubmitRating',ratingList);
       //然后去往游戏全部列表
+      this.$router.push("/");
+
     },
     async submitRating(){//提交评论
       let ratingList=[];
