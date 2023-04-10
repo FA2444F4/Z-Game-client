@@ -121,7 +121,41 @@
      </span>
     </el-dialog>
     <div v-if="!getDialogVisible()">
-      已经评价够了游戏
+      <!--游戏推荐-->
+     <!-- <div class="block">
+        <span class="demonstration">游戏推荐</span>
+        <el-carousel height="150px">
+
+          <el-carousel-item v-for="item in 4" :key="item">
+            <h3 class="small">{{ item }}</h3>
+          </el-carousel-item>
+
+        </el-carousel>
+      </div>-->
+      <template>
+        <el-carousel :interval="4000" type="card" height="600px">
+          <el-carousel-item v-for="item in recommentdGameList">
+            <el-image
+              align="center"
+              style="height: 300px;width: 300px"
+              :fit="fit"
+              :src="item.game.header_image"></el-image>
+            <div class="block">
+              <h2 class="demonstration" style="color: #dc4d14">{{ item.game.name }}</h2>
+              <div v-if="item.rating!==-1">
+                <el-rate v-model="item.rating"></el-rate>
+              </div>
+              <div v-if="item.rating===-1">
+                <p>暂无评分</p>
+              </div>
+              <p>{{item.game.description}}</p>
+            </div>
+          </el-carousel-item>
+          <!--<el-carousel-item v-for="item in 6" :key="item">
+            <h3 class="medium">{{ item }}</h3>
+          </el-carousel-item>-->
+        </el-carousel>
+      </template>
     </div>
 
     <!--正式推荐游戏-->
@@ -152,6 +186,24 @@ export default {
           rating: 0,
         }
       ],
+      recommentdGameList:[
+        {
+          game: {
+            id: 0,
+            name: '',
+            developer_id: 0,
+            price: 0,
+            create_time: 0,
+            description: '',
+            header_image: '',
+            screenshot1: '',
+            screenshot2: '',
+            screenshot3: '',
+            is_exist: 1,
+          },
+          rating: 0,
+        }
+      ],
       fit: "contain",
       url: 'https://upload.wikimedia.org/wikipedia/zh/7/71/PvZ_cover.jpg',
     }
@@ -162,6 +214,10 @@ export default {
 
     //
     this.getWaitingRatingGameList()
+
+    //
+    // this.getTestRecommendGame();
+    this.getRecommendGameList();
   },
   methods: {
     //判断玩家游戏评论数是否>=5
@@ -203,6 +259,19 @@ export default {
       //让后端带着数组去改
       const {data :res}=await this.$axios.put('apis/player/playerSubmitRating',ratingList);
       this.$router.push('/PlayerGameList');
+    },
+    //获得测试的游戏
+    async getTestRecommendGame(){
+      const {data :res}=await this.$axios.get('apis/player/getTestRecommendGame');
+      this.recommentdGameList=res.data;
+      // console.log("test")
+      // console.log(res.data)
+    },
+    //测试
+    async getRecommendGameList(){
+      const {data :res}=await this.$axios.get('apis/player/getRecommendGameList');
+      // console.log(res.data)
+      this.recommentdGameList=res.data;
     }
 
   }
@@ -210,5 +279,19 @@ export default {
 </script>
 
 <style scoped>
+.el-carousel__item h3 {
+  color: #475669;
+  font-size: 14px;
+  opacity: 0.75;
+  line-height: 200px;
+  margin: 0;
+}
 
+.el-carousel__item:nth-child(2n) {
+  background-color: #99a9bf;
+}
+
+.el-carousel__item:nth-child(2n+1) {
+  background-color: #d3dce6;
+}
 </style>
