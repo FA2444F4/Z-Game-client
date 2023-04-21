@@ -14,11 +14,31 @@
                 <el-submenu index="2">
                   <template slot="title" style="color: #dc143c">游戏管理</template>
                   <el-menu-item index="2-1">
-                    <router-link to="/developerGameList">游戏列表</router-link>
+                    <router-link to="/developerGameList"> 游戏列表</router-link>
                   </el-menu-item>
                   <el-menu-item index="2-2">
                     <router-link to="/developerGameAdd">发布游戏</router-link>
                   </el-menu-item>
+                </el-submenu>
+
+                <el-submenu index="5">
+                  <template slot="title" style="color: #dc143c">游戏论坛</template>
+                  <el-menu-item index="5-1">
+                    <!--<router-link to="/playerRatingList">论坛首页</router-link>-->
+                    <router-link to="/developerForumHome">论坛首页</router-link>
+                  </el-menu-item>
+                  <el-menu-item index="5-2">
+                    <router-link to="/myEssayList2">我的文章</router-link>
+                  </el-menu-item>
+                </el-submenu>
+                <el-submenu index="4">
+                  <template slot="title" style="color: #dc143c">资产管理</template>
+                  <el-menu-item index="4-1">
+                    <router-link to="/developerWalletInfo">资产信息</router-link>
+                  </el-menu-item>
+                 <!-- <el-menu-item index="4-2">
+                    <router-link to="#">待定</router-link>
+                  </el-menu-item>-->
                 </el-submenu>
 
                 <el-submenu index="3">

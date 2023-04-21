@@ -135,21 +135,25 @@
       <template>
         <el-carousel :interval="4000" type="card" height="600px">
           <el-carousel-item v-for="item in recommentdGameList">
-            <el-image
-              align="center"
-              style="height: 300px;width: 300px"
-              :fit="fit"
-              :src="item.game.header_image"></el-image>
-            <div class="block">
-              <h2 class="demonstration" style="color: #dc4d14">{{ item.game.name }}</h2>
-              <div v-if="item.rating!==-1">
-                <el-rate v-model="item.rating"></el-rate>
+            <!--<el-card class="box-card">-->
+              <el-image
+                align="center"
+                style="height: 300px;width: 300px"
+                :fit="fit"
+                :src="item.game.header_image"></el-image>
+              <div class="block">
+                <h2 class="demonstration" style="color: #dc4d14">{{ item.game.name }}</h2>
+                <div v-if="item.rating!==-1">
+                  <el-rate v-model="item.rating"></el-rate>
+                </div>
+                <div v-if="item.rating===-1">
+                  <p>暂无评分</p>
+                </div>
+                <p>{{item.game.description}}</p>
+                <el-button @click.prevent="goGameInfo(item.game.id)">查看详情</el-button>
               </div>
-              <div v-if="item.rating===-1">
-                <p>暂无评分</p>
-              </div>
-              <p>{{item.game.description}}</p>
-            </div>
+            <!--</el-card>-->
+
           </el-carousel-item>
           <!--<el-carousel-item v-for="item in 6" :key="item">
             <h3 class="medium">{{ item }}</h3>
@@ -272,7 +276,16 @@ export default {
       const {data :res}=await this.$axios.get('apis/player/getRecommendGameList');
       // console.log(res.data)
       this.recommentdGameList=res.data;
-    }
+    },
+    async goGameInfo(id) {
+      this.$router.push({
+        name: 'PlayerGameInfo',
+        path: '/playerGameInfo',
+        params: {
+          id: id,
+        }
+      })
+    },
 
   }
 }
@@ -283,7 +296,7 @@ export default {
   color: #475669;
   font-size: 14px;
   opacity: 0.75;
-  line-height: 200px;
+  line-height: 150px;
   margin: 0;
 }
 

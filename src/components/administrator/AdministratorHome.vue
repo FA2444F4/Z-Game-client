@@ -21,6 +21,17 @@
                   </el-menu-item>
                 </el-submenu>
 
+                <el-submenu index="5">
+                  <template slot="title" style="color: #dc143c">游戏论坛</template>
+                  <el-menu-item index="5-1">
+                    <!--<router-link to="/playerRatingList">论坛首页</router-link>-->
+                    <router-link to="/administratorForumHome">论坛首页</router-link>
+                  </el-menu-item>
+                  <el-menu-item index="5-2">
+                    <router-link to="/myEssayList0">我的文章</router-link>
+                  </el-menu-item>
+                </el-submenu>
+
                 <el-submenu index="3">
                   <template slot="title">
                     <i class="el-icon-user"></i>

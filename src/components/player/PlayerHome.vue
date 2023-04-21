@@ -13,7 +13,7 @@
                 <el-submenu index="1">
                   <template slot="title">全网游戏</template>
                   <el-menu-item index="1-1">
-                    <router-link to="/playerGameRecommend">游戏推荐</router-link>
+                    <router-link to="/playerGameRecommend"> 游戏推荐</router-link>
                   </el-menu-item>
                   <el-menu-item index="1-2">
                     <router-link to="/playerGameList">所有游戏</router-link>
@@ -22,13 +22,31 @@
                 <el-submenu index="2">
                   <template slot="title">游戏管理</template>
                   <el-menu-item index="2-1">
-                    <router-link to="">待定</router-link>
+                    <router-link to="/playerHaveGameList">我的游戏</router-link>
                   </el-menu-item>
                   <el-menu-item index="2-2">
-                    <router-link to="#">2-2</router-link>
+                    <router-link to="/playerRatingList">我的评分</router-link>
                   </el-menu-item>
                 </el-submenu>
-
+                <el-submenu index="5">
+                  <template slot="title" style="color: #dc143c">游戏论坛</template>
+                  <el-menu-item index="5-1">
+                    <!--<router-link to="/playerRatingList">论坛首页</router-link>-->
+                    <router-link to="/playerForumHome">论坛首页</router-link>
+                  </el-menu-item>
+                  <el-menu-item index="5-2">
+                    <router-link to="/myEssayList1">我的文章</router-link>
+                  </el-menu-item>
+                </el-submenu>
+                <el-submenu index="4">
+                  <template slot="title" style="color: #dc143c">资产管理</template>
+                  <el-menu-item index="4-1">
+                    <router-link to="/playerWalletInfo">资产信息</router-link>
+                  </el-menu-item>
+                  <!--<el-menu-item index="4-2">
+                    <router-link to="#">待定</router-link>
+                  </el-menu-item>-->
+                </el-submenu>
                 <el-submenu index="3">
                   <template slot="title">
                     <i class="el-icon-user"></i>
@@ -107,6 +125,7 @@
       async destorySession() {
         const {data: res} = await this.$axios.get('/apis/login/destorySession')
         this.$message.info("您已退出登录")
+        console.log("登出")
         this.$router.push('/')
       }
     }
