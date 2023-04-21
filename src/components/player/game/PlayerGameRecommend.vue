@@ -19,7 +19,11 @@
             :src="waitingRatingGameList[0].game.header_image"></el-image>
           <div class="block">
             <span class="demonstration">{{ waitingRatingGameList[0].game.name }}</span>
-            <el-rate v-model="waitingRatingGameList[0].rating"></el-rate>
+            <!--<el-rate v-model="waitingRatingGameList[0].rating"></el-rate>-->
+            <el-rate
+              v-model="waitingRatingGameList[0].rating"
+               show-score text-color="#ff9900" score-template="{value}">
+            </el-rate>
           </div>
         </el-col>
         <el-col :span="4">
@@ -29,7 +33,11 @@
             :src="waitingRatingGameList[1].game.header_image"></el-image>
           <div class="block">
             <span class="demonstration">{{ waitingRatingGameList[1].game.name }}</span>
-            <el-rate v-model="waitingRatingGameList[1].rating"></el-rate>
+            <!--<el-rate v-model="waitingRatingGameList[1].rating"></el-rate>-->
+            <el-rate
+              v-model="waitingRatingGameList[1].rating"
+               show-score text-color="#ff9900" score-template="{value}">
+            </el-rate>
           </div>
         </el-col>
         <el-col :span="4">
@@ -39,7 +47,10 @@
             :src="waitingRatingGameList[2].game.header_image"></el-image>
           <div class="block">
             <span class="demonstration">{{ waitingRatingGameList[2].game.name }}</span>
-            <el-rate v-model="waitingRatingGameList[2].rating"></el-rate>
+            <el-rate
+              v-model="waitingRatingGameList[2].rating"
+               show-score text-color="#ff9900" score-template="{value}">
+            </el-rate>
           </div>
         </el-col>
         <el-col :span="4">
@@ -49,7 +60,10 @@
             :src="waitingRatingGameList[3].game.header_image"></el-image>
           <div class="block">
             <span class="demonstration">{{ waitingRatingGameList[3].game.name }}</span>
-            <el-rate v-model="waitingRatingGameList[3].rating"></el-rate>
+            <el-rate
+              v-model="waitingRatingGameList[3].rating"
+               show-score text-color="#ff9900" score-template="{value}">
+            </el-rate>
           </div>
         </el-col>
         <el-col :span="4">
@@ -59,7 +73,10 @@
             :src="waitingRatingGameList[4].game.header_image"></el-image>
           <div class="block">
             <span class="demonstration">{{ waitingRatingGameList[4].game.name }}</span>
-            <el-rate v-model="waitingRatingGameList[4].rating"></el-rate>
+            <el-rate
+              v-model="waitingRatingGameList[4].rating"
+               show-score text-color="#ff9900" score-template="{value}">
+            </el-rate>
           </div>
         </el-col>
       </el-row>
@@ -71,7 +88,10 @@
             :src="waitingRatingGameList[5].game.header_image"></el-image>
           <div class="block">
             <span class="demonstration">{{ waitingRatingGameList[5].game.name }}</span>
-            <el-rate v-model="waitingRatingGameList[5].rating"></el-rate>
+            <el-rate
+              v-model="waitingRatingGameList[5].rating"
+               show-score text-color="#ff9900" score-template="{value}">
+            </el-rate>
           </div>
         </el-col>
         <el-col :span="4">
@@ -81,7 +101,10 @@
             :src="waitingRatingGameList[6].game.header_image"></el-image>
           <div class="block">
             <span class="demonstration">{{ waitingRatingGameList[6].game.name }}</span>
-            <el-rate v-model="waitingRatingGameList[6].rating"></el-rate>
+            <el-rate
+              v-model="waitingRatingGameList[6].rating"
+               show-score text-color="#ff9900" score-template="{value}">
+            </el-rate>
           </div>
         </el-col>
         <el-col :span="4">
@@ -91,7 +114,10 @@
             :src="waitingRatingGameList[7].game.header_image"></el-image>
           <div class="block">
             <span class="demonstration">{{ waitingRatingGameList[7].game.name }}</span>
-            <el-rate v-model="waitingRatingGameList[7].rating"></el-rate>
+            <el-rate
+              v-model="waitingRatingGameList[7].rating"
+               show-score text-color="#ff9900" score-template="{value}">
+            </el-rate>
           </div>
         </el-col>
         <el-col :span="4">
@@ -101,7 +127,10 @@
             :src="waitingRatingGameList[8].game.header_image"></el-image>
           <div class="block">
             <span class="demonstration">{{ waitingRatingGameList[8].game.name }}</span>
-            <el-rate v-model="waitingRatingGameList[8].rating"></el-rate>
+            <el-rate
+              v-model="waitingRatingGameList[8].rating"
+               show-score text-color="#ff9900" score-template="{value}">
+            </el-rate>
           </div>
         </el-col>
         <el-col :span="4">
@@ -111,7 +140,10 @@
             :src="waitingRatingGameList[9].game.header_image"></el-image>
           <div class="block">
             <span class="demonstration">{{ waitingRatingGameList[9].game.name }}</span>
-            <el-rate v-model="waitingRatingGameList[9].rating"></el-rate>
+            <el-rate
+              v-model="waitingRatingGameList[9].rating"
+                show-score text-color="#ff9900" score-template="{value}">
+            </el-rate>
           </div>
         </el-col>
       </el-row>
@@ -144,7 +176,11 @@
               <div class="block">
                 <h2 class="demonstration" style="color: #dc4d14">{{ item.game.name }}</h2>
                 <div v-if="item.rating!==-1">
-                  <el-rate v-model="item.rating"></el-rate>
+                  <!--<el-rate v-model="item.rating"></el-rate>-->
+                  <el-rate
+                    v-model="item.rating"
+                    disabled show-score text-color="#ff9900" score-template="{value}">
+                  </el-rate>
                 </div>
                 <div v-if="item.rating===-1">
                   <p>暂无评分</p>
@@ -237,6 +273,11 @@ export default {
       const {data: res} = await this.$axios.get('/apis/game/getWaitingRatingGameList')
       // console.log(res.data);
       this.waitingRatingGameList = res.data;
+      for (let i = 0; i < this.waitingRatingGameList.length; i++) {
+        this.waitingRatingGameList[i].rating=0;
+      }
+      console.log("this.waitingRatingGameList")
+      console.log(this.waitingRatingGameList)
     },
     closeDialog() {//关闭对话框
       this.$router.push("/PlayerGameList")
@@ -245,7 +286,10 @@ export default {
       //先提交评论
       let ratingList=[];
       for (let i = 0; i < this.waitingRatingGameList.length; i++) {
-        ratingList.push({"id":this.waitingRatingGameList[i].game.id,"rating":this.waitingRatingGameList[i].rating});
+        if(this.waitingRatingGameList[i].rating>=1&&this.waitingRatingGameList[i].rating<=5){
+
+          ratingList.push({"id":this.waitingRatingGameList[i].game.id,"rating":this.waitingRatingGameList[i].rating});
+        }
       }
       console.log(ratingList)
       //让后端带着数组去改
@@ -257,7 +301,9 @@ export default {
     async submitRating(){//提交评论
       let ratingList=[];
       for (let i = 0; i < this.waitingRatingGameList.length; i++) {
+        if(this.waitingRatingGameList[i].rating>=1&&this.waitingRatingGameList[i].rating<=5){
           ratingList.push({"id":this.waitingRatingGameList[i].game.id,"rating":this.waitingRatingGameList[i].rating});
+          }
       }
       console.log(ratingList)
       //让后端带着数组去改

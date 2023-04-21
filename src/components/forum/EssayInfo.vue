@@ -171,7 +171,10 @@ export default {
         const {data: res} = await this.$axios.put('/apis/essay/addLikes/' + this.essay.id);
         this.essay.likes += 1;
         this.likesFlag = 1;
+        this.$message.success("点赞成功")
+      }else {
         this.$message.warning("您已经点过赞了")
+
       }
     },
     async addMessage(){

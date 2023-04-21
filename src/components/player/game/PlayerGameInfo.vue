@@ -8,21 +8,36 @@
         <!--游戏详情-->
         <el-form>
           <el-card class="box-card">
-            <el-form-item>
-              <el-image
-                :fit="fit"
-                :src="this.game.header_image"
-                style="width: 500px; height: 300px"></el-image>
+            <el-row>
+              <el-col :span="12">
+                <el-form-item>
+                  <el-image
+                    :fit="fit"
+                    :src="this.game.header_image"
+                    style="width: 500px; height: 300px"></el-image>
 
 
-            </el-form-item>
-            <el-tag
-              v-for="tag in tags">
-              {{tag}}
-            </el-tag>
-            <el-form-item label="游戏名">
-              <span>{{ this.game.name }}</span>
-            </el-form-item>
+                </el-form-item>
+                <el-tag
+                  v-for="tag in tags">
+                  {{tag}}
+                </el-tag>
+                <el-form-item label="游戏名">
+                  <span>{{ this.game.name }}</span>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <div style="margin-top: 10px">
+                  <el-progress style="margin-top: 2px" text-inside="true" stroke-width="25"  color="#008AC2"    :percentage="(100*(this.five)/(this.one+this.two+this.three+this.four+this.five))"></el-progress>
+                  <el-progress style="margin-top: 2px" text-inside="true" stroke-width="25"  color="#15A2DB"    :percentage="(100*(this.four)/(this.one+this.two+this.three+this.four+this.five))"></el-progress>
+                  <el-progress style="margin-top: 2px" text-inside="true" stroke-width="25"  color="#1DADE8"    :percentage="(100*(this.three)/(this.one+this.two+this.three+this.four+this.five))"></el-progress>
+                  <el-progress style="margin-top: 2px" text-inside="true" stroke-width="25"  color="#33BCF3"    :percentage="(100*(this.two)/(this.one+this.two+this.three+this.four+this.five))"></el-progress>
+                  <el-progress style="margin-top: 2px" text-inside="true" stroke-width="25"  color="#5BD0FF"    :percentage="(100*(this.one)/(this.one+this.two+this.three+this.four+this.five))"></el-progress>
+
+                </div>
+              </el-col>
+            </el-row>
+
 
           </el-card>
 
@@ -119,20 +134,20 @@
             </el-card>
 
           </div>
-          <el-card class="box-card">
-            <el-form-item label="">
+          <el-card class="box-card" v-if="(this.game.screenshot1!==''||this.game.screenshot2!==''||this.game.screenshot3!=='')">
+            <el-form-item label="" v-if="(this.game.screenshot1!==null&&this.game.screenshot1!=='')">
               <el-image
                 :fit="fit"
                 :src="this.game.screenshot1"
                 style="width: 200px; height: 200px"></el-image>
             </el-form-item>
-            <el-form-item label="">
+            <el-form-item label=""  v-if="(this.game.screenshot2!==null&&this.game.screenshot3!=='')">
               <el-image
                 :fit="fit"
                 :src="this.game.screenshot2"
                 style="width: 200px; height: 200px"></el-image>
             </el-form-item>
-            <el-form-item label="">
+            <el-form-item label=""  v-if="(this.game.screenshot2!==null&&this.game.screenshot3!=='')">
               <el-image
                 :fit="fit"
                 :src="this.game.screenshot3"
@@ -143,7 +158,30 @@
 
           <el-card class="box-card">
             <h2>其他玩家的评论</h2>
-            <el-table :data="ratingList"
+            <el-card class="box-card" v-for="(item,index) in ratingList" style="margin-bottom: 10px" shadow="hover">
+              <div slot="header" class="clearfix">
+                <el-row :gutter="20">
+                  <el-col :span="2">
+                    {{index+1}}楼 :
+                  </el-col>
+
+                  <el-col :span="5">
+                    <span>{{ item.player_name }}</span>
+                  </el-col>
+                </el-row>
+              </div>
+              <div>
+                <el-rate
+                  v-model="item.rating"
+                  disabled show-score text-color="#ff9900" score-template="{value}">
+                </el-rate>
+              </div>
+              <div>
+                <el-input v-model="item.comment" type="textarea" :rows="5"></el-input>
+              </div>
+
+            </el-card>
+            <!--<el-table :data="ratingList"
                       height="650">
 
               <el-table-column
@@ -156,7 +194,7 @@
                 label="评论" prop="comment">
               </el-table-column>
 
-            </el-table>
+            </el-table>-->
           </el-card>
 
         </el-form>
@@ -188,6 +226,11 @@ export default {
         is_have: 1,
       },
       rating: 0,
+      one: 0,
+      two: 0,
+      three: 0,
+      four: 0,
+      five: 0,
       fit: 'contain',
       //是否给出购买接口
       buy_button: 0,
@@ -240,6 +283,11 @@ export default {
       // console.log(this.game)
       // console.log(this.rating)
       this.game.create_time *= 1000;
+      this.one=res.data.one;
+      this.two=res.data.two;
+      this.three=res.data.three;
+      this.four=res.data.four;
+      this.five=res.data.five;
       //
     },
     //player_game加载
