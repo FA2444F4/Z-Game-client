@@ -126,7 +126,7 @@
               </el-card>
 
             </template>
-          </el-table-column>-->
+          </el-table-column>--><!---->
         </el-table>
       </el-main>
     </el-container>
