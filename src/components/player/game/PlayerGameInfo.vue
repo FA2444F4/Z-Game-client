@@ -28,11 +28,11 @@
               </el-col>
               <el-col :span="12">
                 <div style="margin-top: 10px">
-                  <el-progress style="margin-top: 2px" text-inside="true" stroke-width="25"  color="#008AC2"    :percentage="(100*(this.five)/(this.one+this.two+this.three+this.four+this.five))"></el-progress>
-                  <el-progress style="margin-top: 2px" text-inside="true" stroke-width="25"  color="#15A2DB"    :percentage="(100*(this.four)/(this.one+this.two+this.three+this.four+this.five))"></el-progress>
-                  <el-progress style="margin-top: 2px" text-inside="true" stroke-width="25"  color="#1DADE8"    :percentage="(100*(this.three)/(this.one+this.two+this.three+this.four+this.five))"></el-progress>
-                  <el-progress style="margin-top: 2px" text-inside="true" stroke-width="25"  color="#33BCF3"    :percentage="(100*(this.two)/(this.one+this.two+this.three+this.four+this.five))"></el-progress>
-                  <el-progress style="margin-top: 2px" text-inside="true" stroke-width="25"  color="#5BD0FF"    :percentage="(100*(this.one)/(this.one+this.two+this.three+this.four+this.five))"></el-progress>
+                  <el-progress style="margin-top: 2px" text-inside="true" stroke-width="25"  color="#008AC2"    :percentage="this.result((100*(this.five)/(this.one+this.two+this.three+this.four+this.five)))"></el-progress>
+                  <el-progress style="margin-top: 2px" text-inside="true" stroke-width="25"  color="#15A2DB"    :percentage="this.result((100*(this.four)/(this.one+this.two+this.three+this.four+this.five)))"></el-progress>
+                  <el-progress style="margin-top: 2px" text-inside="true" stroke-width="25"  color="#1DADE8"    :percentage="this.result((100*(this.three)/(this.one+this.two+this.three+this.four+this.five)))"></el-progress>
+                  <el-progress style="margin-top: 2px" text-inside="true" stroke-width="25"  color="#33BCF3"    :percentage="this.result((100*(this.two)/(this.one+this.two+this.three+this.four+this.five)))"></el-progress>
+                  <el-progress style="margin-top: 2px" text-inside="true" stroke-width="25"  color="#5BD0FF"    :percentage="this.result((100*(this.one)/(this.one+this.two+this.three+this.four+this.five)))"></el-progress>
 
                 </div>
               </el-col>
@@ -259,6 +259,7 @@ export default {
 
     }
   },
+
   created() {
     // console.log(this.$route.params.id)
     this.playerGameInfoLoad(this.$route.params.id)
@@ -274,6 +275,9 @@ export default {
   },
 
   methods: {
+    result(num) {
+      return Math.floor(num);
+    },
     //游戏信息加载
     async playerGameInfoLoad(id) {
       const {data: res} = await this.$axios.get('/apis/game/getGameInfo/' + id)

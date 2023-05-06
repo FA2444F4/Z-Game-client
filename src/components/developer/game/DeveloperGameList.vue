@@ -90,6 +90,8 @@
       async deleteGame(id){
         const {data: res} = await this.$axios.delete('/apis/game/deleteGame/'+id)
       },
+      //判断游戏是https还是base64
+
     }
   }
 </script>

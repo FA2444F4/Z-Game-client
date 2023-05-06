@@ -249,6 +249,8 @@ export default {
     }
   },
   created() {
+
+
     //判断玩家游戏评论数是否>=5
     this.ifPlayerRatingNumberEnough();
 
@@ -257,11 +259,13 @@ export default {
 
     //
     // this.getTestRecommendGame();
-    this.getRecommendGameList();
+    // this.getRecommendGameList();
+    this.getRecommendGameListPlus();
   },
   methods: {
     //判断玩家游戏评论数是否>=5
     async ifPlayerRatingNumberEnough() {
+
       const {data: res} = await this.$axios.get('/apis/player/ifPlayerRatingNumberEnough')
       this.ifRatingNumberEnough = res.data;
       console.log(this.ifRatingNumberEnough);
@@ -321,6 +325,10 @@ export default {
     async getRecommendGameList(){
       const {data :res}=await this.$axios.get('apis/player/getRecommendGameList');
       // console.log(res.data)
+      this.recommentdGameList=res.data;
+    },
+    async getRecommendGameListPlus(){
+      const {data :res}=await this.$axios.get('apis/player/getRecommendGameListPlus');
       this.recommentdGameList=res.data;
     },
     async goGameInfo(id) {

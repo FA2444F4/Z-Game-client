@@ -84,10 +84,10 @@
             <template v-slot="{row}" style="height: 100%">
               <el-card style="height: 100%" >
                 <!--评分-->
-                <span v-if="(row.rating===-1)">
+                <div v-if="(row.rating===-1)||(row.one===0&&row.two===0&&row.three===0&&row.four===0&&row.five===0)">
                 <span>暂无评分</span>
-                </span>
-                <span v-else>
+                </div>
+                <div v-else>
                 <el-rate
                   v-model="row.rating"
                   disabled
@@ -95,21 +95,22 @@
                   text-color="#ff9900"
                   score-template="{value}">
               </el-rate>
-               </span>
+                  <div style="margin-top: 10px">
+                  <el-progress style="margin-top: 2px" text-inside="true" stroke-width="25"    color="#008AC2" :percentage="result(((100*(row.five)/(row.one+row.two+row.three+row.four+row.five))))"></el-progress>
+                  <el-progress style="margin-top: 2px" text-inside="true" stroke-width="25"    color="#15A2DB" :percentage="result((100*(row.four)/(row.one+row.two+row.three+row.four+row.five)))"></el-progress>
+                  <el-progress style="margin-top: 2px" text-inside="true" stroke-width="25"    color="#1DADE8" :percentage="result((100*(row.three)/(row.one+row.two+row.three+row.four+row.five)))"></el-progress>
+                  <el-progress style="margin-top: 2px" text-inside="true" stroke-width="25"    color="#33BCF3" :percentage="result((100*(row.two)/(row.one+row.two+row.three+row.four+row.five)))"></el-progress>
+                  <el-progress style="margin-top: 2px" text-inside="true" stroke-width="25"    color="#5BD0FF" :percentage="result((100*(row.one)/(row.one+row.two+row.three+row.four+row.five)))"></el-progress>
+                    <!--<el-progress :percentage="(row.five)"></el-progress>
+                    <el-progress :percentage="(row.four)"></el-progress>
+                    <el-progress :percentage="(row.three)"></el-progress>
+                    <el-progress :percentage="(row.two)"></el-progress>
+                    <el-progress :percentage="(row.one)"></el-progress>-->
+                </div>
+               </div>
                 <!--梯度分级-->
 
-                <div style="margin-top: 10px">
-                  <el-progress style="margin-top: 2px" text-inside="true" stroke-width="25"    color="#008AC2" :percentage="(100*(row.five)/(row.one+row.two+row.three+row.four+row.five))"></el-progress>
-                  <el-progress style="margin-top: 2px" text-inside="true" stroke-width="25"    color="#15A2DB" :percentage="(100*(row.four)/(row.one+row.two+row.three+row.four+row.five))"></el-progress>
-                  <el-progress style="margin-top: 2px" text-inside="true" stroke-width="25"    color="#1DADE8" :percentage="(100*(row.three)/(row.one+row.two+row.three+row.four+row.five))"></el-progress>
-                  <el-progress style="margin-top: 2px" text-inside="true" stroke-width="25"    color="#33BCF3" :percentage="(100*(row.two)/(row.one+row.two+row.three+row.four+row.five))"></el-progress>
-                  <el-progress style="margin-top: 2px" text-inside="true" stroke-width="25"    color="#5BD0FF" :percentage="(100*(row.one)/(row.one+row.two+row.three+row.four+row.five))"></el-progress>
-                  <!--<el-progress :percentage="(row.five)"></el-progress>
-                  <el-progress :percentage="(row.four)"></el-progress>
-                  <el-progress :percentage="(row.three)"></el-progress>
-                  <el-progress :percentage="(row.two)"></el-progress>
-                  <el-progress :percentage="(row.one)"></el-progress>-->
-                </div>
+
               </el-card>
 
             </template>
@@ -183,6 +184,9 @@ export default {
 
   },
   methods: {
+    result(num) {
+      return Math.floor(num);
+    },
     format(percentage) {
       return percentage === 100 ? '满' : `${percentage}%`;
     },
