@@ -6,7 +6,7 @@
         <el-header>
           <el-row>
             <el-col :span="6">
-              <h2>玩家首页</h2>
+              <h2>管理员首页</h2>
             </el-col>
             <el-col :span="18">
               <el-menu mode="horizontal" :default-active="activeIndex">
